@@ -1,8 +1,7 @@
-"""
-URL configuration for project project.
+"""project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
+    https://docs.djangoproject.com/en/3.0/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -15,12 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.urls import path
 from django.urls import path, include
-import debug_toolbar
+
+from BorderPay import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('playground/', include('playground.urls')),
-    path("__debug__/", include("debug_toolbar.urls")),
+    # path('BorderPay/', ),
+    path('', include('BorderPay.urls')),
+    path('', views.homepage),
+    path('employeelogin/', views.employeelogin),
+    path('employerlogin/', views.employerlogin)
 
+    # path('BorderPay/index', views.index, name='index'),
 ]
