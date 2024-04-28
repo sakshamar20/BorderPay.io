@@ -24,8 +24,8 @@ urlpatterns = [
     # path('BorderPay/', ),
     path('', include('BorderPay.urls')),
     path('', views.homepage),
-    path('employeelogin/', views.employeelogin),
-    path('employerlogin/', views.employerlogin)
+    path('employeelogin', views.employeelogin),
+    path('employerlogin', views.employerlogin)
 
     # path('BorderPay/index', views.index, name='index'),
 ]
