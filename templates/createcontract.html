@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BorderPay.io</title>
+<style>
+    /* CSS to center content and style form */
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0; /* Set background color */
+    }
+    form {
+        text-align: center;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="number"],
+    select {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+</style>
+
+<body>
+    <!-- "{% url 'employersignup' %}" -->
+    <form method="POST" action="{% url 'createcontract' %}">
+        {% csrf_token %}
+        <h2>Create Contract</h2>
+        <input type="text" name="username_er" placeholder="Your username" required><br>
+        <input type="text" name="username_ee" placeholder="Employee Username" required><br>
+        <br>
+        <select id="denomination" name="denomination">
+            <option value="rupees">Rupees</option>
+            <option value="dollar">Dollar</option>
+            <option value="euro">Euro</option>
+        </select>
+        <input type ="number" name="salary" placeholder = "Salary (CTC)" required><br>
+        <select id="type" name="type">
+            <option value="regular">Regular</option>
+            <option value="need">Need to Need</option>
+        </select>
+        <input type ="number" name="interval" placeholder = "Interval (in days)" required><br>
+
+        <button type = 'submit ', onclick="location.href='/employerwin'">Send</button>
+    </form>
+    
+    <br>
+
+    
+</body>
+</html>

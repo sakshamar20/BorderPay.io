@@ -20,16 +20,25 @@ from django.urls import path, include
 
 from BorderPay import views
 
+# views.empty_table(1)
+views.hardcode('saksham')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('BorderPay/', ),
     path('', include('BorderPay.urls')),
     path('', views.homepage),
-    path('employeelogin', views.employeelogin, name = 'employeelogin'),
-    path('employerlogin', views.employerlogin, name = 'employerlogin'),
-    path('employersignup', views.employersignup, name = 'employersignup'),
-    path('employeesignup', views.employeesignup, name = 'employeesignup'),
-    path("__debug__/", include("debug_toolbar.urls"))
+    path('employersignup/', views.employersignup, name = 'employersignup'),
+    path('employeelogin/', views.employeelogin, name = 'employeelogin'),
+    path('employerlogin/', views.employerlogin, name = 'employerlogin'),
+    path('employeesignup/', views.employeesignup, name = 'employeesignup'),
+    path('employeewin/', views.employeewin, name = 'employeewin'),
+    path('employerwin/', views.employerwin, name = 'employerwin'),
+    path('createcontract/', views.createcontract, name = 'createcontract'),
+    path('contract/', views.employeewin, name = 'contract'),
+    path('empty/', views.empty, name = 'empty'),
+    path('withdraw/', views.withdraw, name = 'withdraw')
+    # path("__debug__/", include("debug_toolbar.urls"))
 
     # path('BorderPay/index', views.index, name='index'),
 ]

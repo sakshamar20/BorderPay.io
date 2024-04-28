@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'BorderPay',
-    'debug_toolbar'
+    # 'debug_toolbar'
 ]
 
 MIDDLEWARE = [
@@ -52,14 +52,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+ROOT_URLCONF = 'project.urls'
 INTERNAL_IPS = [
     # ...
     "127.0.0.1",
     # ...
 ]
-
-
-ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
     {
