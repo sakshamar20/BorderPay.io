@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employer Login</title>
+<style>
+    /* CSS to center content and style form */
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0; /* Set background color */
+    }
+    form {
+        text-align: center;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"],
+    input[type="password"],
+    input[type="number"],
+    select {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+</style>
+
+<body>
+    <!-- "{% url 'employersignup' %}" -->
+    <form method="post" action="">
+        {% csrf_token %}
+        <h2>Employer Signup</h2>
+        <input type="text" name="username" placeholder="Username" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <input type="number" name="account" placeholder="Account Number" required><br>
+        <select id="location" name="location">
+            <option value="india">India</option>
+            <option value="usa">USA</option>
+            <option value="canada">Canada</option>
+            <option value="netherlands">Netherlands</option>
+            <option value="australia">Australia</option>
+        </select>
+        <br>
+        <select id="bank" name="bank">
+            <option value="a">Bank A</option>
+            <option value="b">Bank B</option>
+            <option value="c">Bank C</option>
+            <option value="d">Bank D</option>
+            <option value="e">Bank E</option>
+        </select>
+        <br>
+        <select id="denomination" name="denomination">
+            <option value="rupees">Rupees</option>
+            <option value="dollar">Dollar</option>
+            <option value="euro">Euro</option>
+        </select>
+
+
+        <button type = 'submit '>Sign Up</button>
+    </form>
+    
+    <br>
+
+    
+</body>
+</html>

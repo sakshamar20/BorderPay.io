@@ -19,16 +19,16 @@ Denominations = [('rupees','rupees'),
                  ('euro','euro')
                 ]
 
-Types = [('need_to_need','need_to_need')
+Types = [('need','need'),
          ('regular','regular')
         ]
 
-Tips = [('employer','employer')
+Tips = [('employer','employer'),
         ('employee','employee')
         ]
 
 class Employer(models.Model):
-    userID = models.PositiveIntegerField(null=true)
+    userID = models.PositiveIntegerField(null=True)
     username = models.CharField(max_length=20, null=False)
     password = models.CharField(max_length=20, null=False)
     location = models.CharField(
@@ -54,21 +54,22 @@ class Employee(models.Model):
     Withdraw_amount = models.PositiveIntegerField
 
 
-class Transactions_request(model.Model):
+class Transactions_request(models.Model):
     Bank_employer = models.CharField(
         max_length=50, choices=Banks, default='a')
     Bank_employee = models.CharField(
         max_length=50, choices=Banks, default='a')
     Bank_account_employer = models.CharField(max_length=20, null=False)
-    Bank_account_employee = models.Charfield(max_length=20, null=False)
+    Bank_account_employee = models.CharField(max_length=20, null=False)
     Country_employer = models.CharField(
+
         max_length=50, choices=Locations, default='india')
     Country_employee = models.CharField(
         max_length=50, choices=Locations, default='india')
     Amount = models.PositiveIntegerField(null=False)
 
 
-class Contract(model.Model):
+class Contract(models.Model):
     employerID = models.PositiveIntegerField(null=False)
     employeeID = models.PositiveIntegerField(null=False)
     Type = models.CharField(

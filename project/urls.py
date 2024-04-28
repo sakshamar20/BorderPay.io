@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+import debug_toolbar
 from django.urls import path
 from django.urls import path, include
 
@@ -25,7 +26,9 @@ urlpatterns = [
     path('', include('BorderPay.urls')),
     path('', views.homepage),
     path('employeelogin', views.employeelogin),
-    path('employerlogin', views.employerlogin)
+    path('employerlogin', views.employerlogin),
+    path('employersignup', views.employersignup, name = 'employersignup'),
+    path("__debug__/", include("debug_toolbar.urls"))
 
     # path('BorderPay/index', views.index, name='index'),
 ]
