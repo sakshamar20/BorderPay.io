@@ -21,7 +21,7 @@ from django.urls import path, include
 from BorderPay import views
 
 # views.empty_table(1)
-views.hardcode('saksham')
+# views.hardcode('saksham')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

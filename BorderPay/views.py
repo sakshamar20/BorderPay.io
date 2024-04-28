@@ -138,7 +138,7 @@ def createcontract(request):
     
 def empty_table(request):
     # Get the queryset of the model
-    queryset = Contract_Requests.objects.all()
+    queryset = Transactions_request.objects.all()
 
     # Delete all objects in the queryset
     queryset.delete()
@@ -160,7 +160,7 @@ def empty(request):
     return render(request, 'empty.html')
 
 
-def transaction(request, amount):
+def transaction( amount):
     global session_user
     transaction = Transactions_request()
     contract = Contract_Requests.objects.get(username_ee=session_user)
@@ -189,14 +189,18 @@ def withdraw(request):
         'withdraw_amount':employee.withdraw_amount,
         'denomination':employee.denomination
     }
-    amount =0
+    amount=0
     amount = int(request.POST.get('amount',0))
     # print(employee.withdraw_amount)
     if amount > employee.withdraw_amount:
         # Proceed with withdrawal
          return render(request, 'withdraw.html', {'error_message': 'You cannot withdraw more than you have'})
-    else:
-        transaction(1,amount)
+    elif amount>0:
+        print('hey')
+        transaction(amount)
+        employee.withdraw_amount -= amount
+        employee.save()
+        return HttpResponse('Transaction sent to bank')
         
 
     return render(request, 'withdraw.html', context)
@@ -205,5 +209,5 @@ def hardcode(username):
     employee= Employee.objects.get(username=username)
     employee.withdraw_amount=2000
     employee.save()
-    
+
 
