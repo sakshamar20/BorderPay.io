@@ -4,7 +4,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Employer Signup</title>
+<title>Employee Signup</title>
 <style>
     /* CSS to center content and style form */
     body {
@@ -50,12 +50,13 @@
 
 <body>
     <!-- "{% url 'employersignup' %}" -->
-    <form method="POST" action="{% url 'employersignup' %}">
+    <form method="POST" action="{% url 'employeesignup' %}">
         {% csrf_token %}
-        <h2>Employer Signup</h2>
+        <h2>Employee Signup</h2>
         <input type="text" name="username" placeholder="Username" required><br>
         <input type="password" name="password" placeholder="Password" required><br>
         <input type="number" name="account" placeholder="Account Number" required><br>
+        <input type ="text" name="name" placeholder = "Full Name" required><br>
         <select id="location" name="location">
             <option value="india">India</option>
             <option value="usa">USA</option>

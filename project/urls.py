@@ -25,9 +25,10 @@ urlpatterns = [
     # path('BorderPay/', ),
     path('', include('BorderPay.urls')),
     path('', views.homepage),
-    path('employeelogin', views.employeelogin),
-    path('employerlogin', views.employerlogin),
+    path('employeelogin', views.employeelogin, name = 'employeelogin'),
+    path('employerlogin', views.employerlogin, name = 'employerlogin'),
     path('employersignup', views.employersignup, name = 'employersignup'),
+    path('employeesignup', views.employeesignup, name = 'employeesignup'),
     path("__debug__/", include("debug_toolbar.urls"))
 
     # path('BorderPay/index', views.index, name='index'),

@@ -40,18 +40,19 @@ class Employer(models.Model):
         max_length=50, choices=Denominations, default='rupees')
     
 class Employee(models.Model):
-    userID = models.PositiveIntegerField(null=False)
+    userID = models.PositiveIntegerField(null=True)
     username = models.CharField(max_length=20, null=False)
     password = models.CharField(max_length=20, null=False)
+    name = models.CharField(max_length=30, null=True)
     contractId = models.PositiveIntegerField(null=True)
-    Location = models.CharField(
+    location = models.CharField(
         max_length=50, choices=Locations, default='india')
-    Bank = models.CharField(
+    bank = models.CharField(
         max_length=50, choices=Banks, default='a')
-    Bank_account = models.CharField(max_length=20, null=False)
-    Denomination = models.CharField(
+    account = models.CharField(max_length=20, null=False)
+    denomination = models.CharField(
         max_length=50, choices=Denominations, default='rupees')
-    Withdraw_amount = models.PositiveIntegerField
+    withdraw_amount = models.PositiveIntegerField(null=False, default=0)
 
 
 class Transactions_request(models.Model):
