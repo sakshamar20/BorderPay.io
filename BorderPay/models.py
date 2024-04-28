@@ -1,40 +1,102 @@
 from django.db import models
 
-Locations =    [('India', 'India'),
-               ('Usa', 'Usa'),
-               ('Canada','Canada'),
-               ('Netherlands', 'Netherlands'),
-               ('Austarlia','Australia')
+Locations =    [('india', 'india'),
+               ('usa', 'usa'),
+               ('canada','canada'),
+               ('netherlands', 'netherlands'),
+               ('austarlia','australia')
                ]
 
-Banks =        [('A', 'A'),
-               ('B', 'B'),
-               ('C','C'),
-               ('D', 'D'),
-               ('E','E')
+Banks =        [('a', 'a'),
+               ('b', 'b'),
+               ('c','c'),
+               ('d', 'd'),
+               ('e','e')
                ]
 
-Denominations = [('Rupees','Rupees'),
-                 ('Dollar','Dollar'),
-                 ('Euro','Euro')
+Denominations = [('rupees','rupees'),
+                 ('dollar','dollar'),
+                 ('euro','euro')
                 ]
 
+Types = [('need_to_need','need_to_need')
+         ('regular','regular')
+        ]
 
-# Create your models here.
+Tips = [('employer','employer')
+        ('employee','employee')
+        ]
+
 class Employer(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    Location = models.CharField(
-        max_length=50, choices=Locations, default='India')
-    Bank = models.CharField(
-        max_length=50, choices=Banks, default='A')
-    Denomination = models.CharField(
-        max_length=50, choices=Denominations, default='Rupees')
+    userID = models.PositiveIntegerField(null=true)
+    username = models.CharField(max_length=20, null=False)
+    password = models.CharField(max_length=20, null=False)
+    location = models.CharField(
+        max_length=50, choices=Locations, default='india')
+    bank = models.CharField(
+        max_length=50, choices=Banks, default='a')
+    account = models.CharField(max_length=20, null=False) 
+    denomination = models.CharField(
+        max_length=50, choices=Denominations, default='rupees')
     
 class Employee(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    userID = models.PositiveIntegerField(null=False)
+    username = models.CharField(max_length=20, null=False)
+    password = models.CharField(max_length=20, null=False)
+    contractId = models.PositiveIntegerField(null=True)
     Location = models.CharField(
-        max_length=50, choices=Locations, default='India')
+        max_length=50, choices=Locations, default='india')
     Bank = models.CharField(
-        max_length=50, choices=Banks, default='A')
+        max_length=50, choices=Banks, default='a')
+    Bank_account = models.CharField(max_length=20, null=False)
     Denomination = models.CharField(
-        max_length=50, choices=Denominations, default='Rupees')
+        max_length=50, choices=Denominations, default='rupees')
+    Withdraw_amount = models.PositiveIntegerField
+
+
+class Transactions_request(model.Model):
+    Bank_employer = models.CharField(
+        max_length=50, choices=Banks, default='a')
+    Bank_employee = models.CharField(
+        max_length=50, choices=Banks, default='a')
+    Bank_account_employer = models.CharField(max_length=20, null=False)
+    Bank_account_employee = models.Charfield(max_length=20, null=False)
+    Country_employer = models.CharField(
+        max_length=50, choices=Locations, default='india')
+    Country_employee = models.CharField(
+        max_length=50, choices=Locations, default='india')
+    Amount = models.PositiveIntegerField(null=False)
+
+
+class Contract(model.Model):
+    employerID = models.PositiveIntegerField(null=False)
+    employeeID = models.PositiveIntegerField(null=False)
+    Type = models.CharField(
+        max_length=50, choices=Types, default='regular')
+    Salary = models.PositiveIntegerField(null=False)
+    Interval = models.PositiveIntegerField(null=False)
+    Timer = models.PositiveIntegerField(null=False)
+
+class Advance_requests:
+    employeeID = models.PositiveIntegerField(null=False)
+    Amount = models.PositiveIntegerField(null=False)
+
+class Advance_approvals:
+    employeeID = models.PositiveIntegerField(null=False)
+    Amount = models.PositiveIntegerField(null=False)
+    Interval = models.PositiveIntegerField(null=False)
+    Timer = models.PositiveIntegerField(null=False)
+
+class Withdraw_approvals:
+    employeeID = models.PositiveIntegerField(null=False)
+    Amount = models.PositiveIntegerField(null=False)
+    Interval = models.PositiveIntegerField(null=False)
+    Timer = models.PositiveIntegerField(null=False)
+
+class Contract_Requests:
+    employerID = models.PositiveIntegerField(null=False)
+    employeeID = models.PositiveIntegerField(null=False)
+    Type = models.CharField(
+        max_length=50, choices=Types, default='regular')
+    Salary = models.PositiveIntegerField(null=False)
+    Interval = models.PositiveIntegerField(null=False)
