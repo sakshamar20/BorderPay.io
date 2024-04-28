@@ -1,13 +1,13 @@
 from django.db import models
 
-Location =    [('India', 'India'),
+Locations =    [('India', 'India'),
                ('Usa', 'Usa'),
                ('Canada','Canada'),
                ('Netherlands', 'Netherlands'),
                ('Austarlia','Australia')
                ]
 
-Banks =    [('A', 'A'),
+Banks =        [('A', 'A'),
                ('B', 'B'),
                ('C','C'),
                ('D', 'D'),
@@ -23,7 +23,18 @@ Denominations = [('Rupees','Rupees'),
 # Create your models here.
 class Employer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    Location = models.CharField(max_length=40)
-    Bank = models.CharField(max_length=20)
+    Location = models.CharField(
+        max_length=50, choices=Locations, default='India')
+    Bank = models.CharField(
+        max_length=50, choices=Banks, default='A')
     Denomination = models.CharField(
-        max_length=50, choices=departments, default='Cardiologist')
+        max_length=50, choices=Denominations, default='Rupees')
+    
+class Employee(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    Location = models.CharField(
+        max_length=50, choices=Locations, default='India')
+    Bank = models.CharField(
+        max_length=50, choices=Banks, default='A')
+    Denomination = models.CharField(
+        max_length=50, choices=Denominations, default='Rupees')
