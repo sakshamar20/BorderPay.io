@@ -4,7 +4,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BorderPay.io</title>
+<title>Advance amount</title>
 <style>
     /* CSS to center content and style form */
     body {
@@ -50,15 +50,15 @@
 
 <body>
     <!-- "{% url 'withdraw' %}" -->
-    <form method="POST" action="{% url 'withdraw' %}">
+    <form method="POST" action="{% url 'advance' %}">
         {% csrf_token %}
-        <h2>Withraw money</h2>
+        <h2>Advance Request</h2>
         
-        <p> You have amount {{withdraw_amount}} {{denomination}}</p>
+        <p> How much amount do you want?</p>
         <input type="number" name="amount" placeholder="Enter Amount" required><br>
     
 
-        <button type = 'submit'>Send transaction request</button>
+        <button type = 'submit'>Send request</button>
         
     </form>
     <button onclick="location.href='/employeewin'">Back to dashboard</button>

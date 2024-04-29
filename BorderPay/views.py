@@ -1,18 +1,20 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from .models import Employer
 from .models import Employee
 from .models import Contract_Requests
 from .models import Transactions_request
 from django.http import HttpResponse
+from .models import Advance_requests
+from .models import Advance_approvals
 
 session_user = ""
 type = ""
-
+user =""
 def homepage(request):
     return render(request, 'index.html')
 
 def employerlogin(request):
-
+    global session_user
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -112,8 +114,15 @@ def employeewin(request):
     if contract_object.approval == 0:
         return render(request, 'contract.html',context)
     
-    # else:
-
+    else:
+        response = request.POST.get('type')
+        print(response)
+        if response == 'need':
+            contract_object.type="need"
+        else:
+            contract_object.type = "regular"
+        contract_object.save()
+        render(request,'employeewin.html',context, )
         
         
         
@@ -121,7 +130,41 @@ def employeewin(request):
     return render(request,'employeewin.html',context, )
 
 def employerwin(request):
-    return render(request,'employerwin.html')
+    global session_user
+    print(session_user)
+    employer = get_object_or_404(Employer, username=session_user)
+    # advance = Advance_requests.objects.get()
+    print(advance)
+    context = {
+        'username_er': employer.username,
+        'location': employer.location,
+        'bank': employer.bank,
+        'account': employer.account,
+        'denomination': employer.denomination,
+        'advance':advance
+    }
+
+    employee_name = request.POST.get('username_ee')
+
+    
+    try:
+        employee = Employee.objects.get(username=employee_name)
+    except Employee.DoesNotExist:
+        return render(request, 'employerwin.html', {'context': context, 'error': 'Cannot find user'})
+    global user
+    user = employee_name
+    employee_context = {
+        'eusername': employee.username,
+        'ebank': employee.bank,
+        'elocation': employee.location,
+        'edenomination': employee.denomination,
+        'ewithdraw_amount': employee.withdraw_amount,
+        'ename': employee.name,
+    }
+    
+    combined_context = {**context, **employee_context}
+    
+    return render(request, 'employerwin.html', combined_context)
 
 def createcontract(request):
     if request.method == "POST":
@@ -159,7 +202,6 @@ def empty(request):
     employee.save()
     return render(request, 'empty.html')
 
-
 def transaction( amount):
     global session_user
     transaction = Transactions_request()
@@ -179,8 +221,6 @@ def transaction( amount):
     transaction.den_employee=employee.denomination
     transaction.den_employer=employer.denomination
     transaction.save()
-
-
 
 def withdraw(request):
     global session_user
@@ -209,5 +249,66 @@ def hardcode(username):
     employee= Employee.objects.get(username=username)
     employee.withdraw_amount=2000
     employee.save()
+
+def advance(request):
+    global session_user
+    print(session_user)
+    amount=0
+    advance=Advance_requests()
+    advance.username=session_user
+    amount = request.POST.get('amount',0)
+    advance.Amount=amount
+    if int(amount)>0:
+        advance.save()
+    print(amount)
+    return render(request, 'advance.html')
+
+def approveadvance(request):
+    global user, session_user
+    print(user)
+    try:
+        advreq = Advance_requests.objects.get(username=user)
+    except Employee.DoesNotExist:
+        return HttpResponse('No advance request')
+    context ={
+        'username':advreq.username,
+        'amount':advreq.Amount
+    }
+    # advapp = Advance_approvals()
+    initial=0
+    duration=0
+    initial = int(request.POST.get('initial',0))
+    duration =int(request.POST.get('duration',0))
+    interval =int( request.POST.get('interval',0))
+    employee = Employee.objects.get(username = user)
+    employer = Employer.objects.get(username = session_user)
+
+    print(initial, duration, interval)
+    if duration != 0 or initial != 0:
+        if initial>0:
+            session_user = user
+            print(session_user)
+            transaction(initial)
+            session_user=employer.username
+            employee.given_amount+=initial
+            employee.save()
+        if initial < advreq.Amount:
+            Advance_approvals(username_ee=employee.username, username_er = employer.username, amount = advreq.Amount-initial, interval = interval, timer = interval, duration = duration, status = True).save()
+    
+        advreq.delete()
+
+
+
+
+
+    return render(request, 'approve_advance.html', context)
+   
+def decline(request):
+    global user
+    advreq = Advance_requests.objects.get(username=user)
+    advreq.delete()
+
+    return render(request, 'decline.html')
+
 
 

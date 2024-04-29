@@ -50,21 +50,23 @@
 
 <body>
     <!-- "{% url 'withdraw' %}" -->
-    <form method="POST" action="{% url 'withdraw' %}">
+    <form method="POST" action="{% url 'approve_advance' %}">
         {% csrf_token %}
-        <h2>Withraw money</h2>
+        <h2>Approve advance</h2>
+
+        <p>Username: {{username}}</p>
+        <p>Amount requested: {{amount}}</p>
         
-        <p> You have amount {{withdraw_amount}} {{denomination}}</p>
-        <input type="number" name="amount" placeholder="Enter Amount" required><br>
+        <input type="number" name="initial" placeholder="Initial payment" required><br>
+        <p>Define time and duration for the rest of payment</p>
+        <input type="number" name="duration" placeholder="Duration (days)" required><br>
+        <input type="number" name="interval" placeholder="Interval (days)" required><br>
     
 
-        <button type = 'submit'>Send transaction request</button>
+        <button type = 'submit'>Approve</button>
+        <button style ='background-color:brown' onclick="location.href='/decline'">Decline</button>
         
     </form>
-    <button onclick="location.href='/employeewin'">Back to dashboard</button>
-    {% if error_message %}
-     <p style="color: red;">{{ error_message }}</p>
-    {% endif %}
     <br>
 
     

@@ -61,17 +61,20 @@ class Transactions_request(models.Model):
 
 
 class Advance_requests(models.Model):
-    employeeID = models.PositiveIntegerField(null=False)
+    username = models.CharField(max_length=20, null=True)
     Amount = models.PositiveIntegerField(null=False)
 
 class Advance_approvals(models.Model):
-    employeeID = models.PositiveIntegerField(null=False)
-    Amount = models.PositiveIntegerField(null=False)
-    Interval = models.PositiveIntegerField(null=False)
-    Timer = models.PositiveIntegerField(null=False)
+    username_ee = models.CharField(max_length=20, null=True)
+    username_er = models.CharField(max_length=20, null=True)
+    amount = models.PositiveIntegerField(null=False)
+    interval = models.PositiveIntegerField(null=False)
+    timer = models.PositiveIntegerField(default=1000)
+    duration = models.PositiveIntegerField(null=False)
+    status=models.PositiveIntegerField(null=True)
 
 class Withdraw_approvals(models.Model):
-    employeeID = models.PositiveIntegerField(null=False)
+    username = models.CharField(max_length=20, null=True)
     Amount = models.PositiveIntegerField(null=False)
     Interval = models.PositiveIntegerField(null=False)
     Timer = models.PositiveIntegerField(null=False)

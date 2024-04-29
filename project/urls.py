@@ -22,11 +22,12 @@ from BorderPay import views
 
 # views.empty_table(1)
 # views.hardcode('saksham')
-
+error_message = ""
+error=""
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('BorderPay/', ),
-    path('', include('BorderPay.urls')),
+    # path('', include('BorderPay.urls')),
     path('', views.homepage),
     path('employersignup/', views.employersignup, name = 'employersignup'),
     path('employeelogin/', views.employeelogin, name = 'employeelogin'),
@@ -37,7 +38,10 @@ urlpatterns = [
     path('createcontract/', views.createcontract, name = 'createcontract'),
     path('contract/', views.employeewin, name = 'contract'),
     path('empty/', views.empty, name = 'empty'),
-    path('withdraw/', views.withdraw, name = 'withdraw')
+    path('withdraw/', views.withdraw, name = 'withdraw'),
+    path('advance/', views.advance, name='advance'),
+    path('approve_advance/', views.approveadvance, name='approve_advance'),
+    path('decline/', views.decline, name='decline')
     # path("__debug__/", include("debug_toolbar.urls"))
 
     # path('BorderPay/index', views.index, name='index'),

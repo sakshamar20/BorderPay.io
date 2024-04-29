@@ -55,11 +55,18 @@
           <div class="card" style="width: 18rem;">
             <!-- <img src="..." class="card-img-top" alt="..."> -->
             <div class="card-body text-center"> <!-- Center text within card -->
+              
+              <form method="POST" action="{% url 'employeewin' %}">
+                {% csrf_token %}
+
               <h5 class="card-title">Payroll Basis</h5>
               <select id="type" name="type">
                 <option value="regular">Regular</option>
                 <option value="need">Need to Need</option>
             </select>
+            
+            <button type="submit">Submit</button>
+            </form>
             </div>
           </div>
         </div>
