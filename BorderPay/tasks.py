@@ -1,2 +1,17 @@
 from datetime import datetime
-from apscheduler.schedulers.background import BackgroundScheduler
+import time
+
+def run():
+    print("Executing run() at:", datetime.now())
+
+start = time.time()
+
+while True:
+    if (time.time() - start >= 30):
+        run()
+        start = time.time()
+
+
+
+
+
