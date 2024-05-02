@@ -42,7 +42,9 @@ urlpatterns = [
     path('advance/', views.advance, name='advance'),
     path('approve_advance/', views.approveadvance, name='approve_advance'),
     path('decline/', views.decline, name='decline'),
-    path('', views.trigger_task, name = 'task')
+    path('', views.trigger_task, name = 'task'),
+    path('terminate/', views.terminate, name = 'terminate'),
+
     # path("__debug__/", include("debug_toolbar.urls"))
 
     # path('BorderPay/index', views.index, name='index'),

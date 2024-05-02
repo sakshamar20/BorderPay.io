@@ -50,21 +50,19 @@
 
 <body>
     <!-- "{% url 'withdraw' %}" -->
-    <form method="POST" action="{% url 'withdraw' %}">
+    <form method="POST" action="{% url 'terminate' %}">
         {% csrf_token %}
-        <h2>Withraw money</h2>
+        <h2>Terminate contract</h2>
         
-        <p> You have amount {{withdraw_amount}} {{denomination}}</p>
-        <input type="number" name="amount" placeholder="Enter Amount" required><br>
-    
+        <!-- <input type="number" name="duration" placeholder="Duration (days)" required><br>
+        <input type="number" name="interval" placeholder="Interval (days)" required><br>
+     -->
 
-        <button onclick="location.href='/employeewin'">Back to dashboard</button>
-        <button type = 'submit'>Send transaction request</button>
+        <!-- <button type = 'submit'>Terminate</button> -->
+        <a href="#" class="btn btn-success" onclick="location.href='/employerwin'" ;">Back to dashboard</a>
+        <button type = submit style ='background-color:brown' onclick="location.href='/employerwin'">Terminate</button>
         
     </form>
-    {% if error_message %}
-     <p style="color: red;">{{ error_message }}</p>
-    {% endif %}
     <br>
 
     

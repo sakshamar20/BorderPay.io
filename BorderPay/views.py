@@ -12,6 +12,7 @@ from BorderPay.tasks import print_hey
 session_user = ""
 type = ""
 user =""
+
 def homepage(request):
     return render(request, 'index.html')
 
@@ -312,7 +313,13 @@ def decline(request):
 
     return render(request, 'decline.html')
 
-
 def trigger_task(request):
+
     print_hey.delay()
     return render(request, 'your_template.html')
+
+def terminate(request):
+     
+     Contract_Requests.objects.filter(username_ee= user).delete()
+
+     return render(request, 'terminate.html')

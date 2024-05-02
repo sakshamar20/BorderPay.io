@@ -58,10 +58,10 @@
         <input type="number" name="amount" placeholder="Enter Amount" required><br>
     
 
+        <button onclick="location.href='/employeewin'">Back to dashboard</button>
         <button type = 'submit'>Send request</button>
         
     </form>
-    <button onclick="location.href='/employeewin'">Back to dashboard</button>
     {% if error_message %}
      <p style="color: red;">{{ error_message }}</p>
     {% endif %}
