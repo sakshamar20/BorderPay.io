@@ -51,9 +51,9 @@
         <h2>Employee Login</h2>
         <input type="text" name="username" placeholder="Username" required><br>
         <input type="password" name="password" placeholder="Password" required><br>
+        <button onclick="location.href='/employeesignup'" style = "background-color: darkgreen;">Sign Up</button>
         <button type="submit">Login</button>
     </form>
-    <button onclick="location.href='/employeesignup'">Sign Up</button>
     <br>
     {% if error_message %}
         <p style="color: red;">{{ error_message }}</p>

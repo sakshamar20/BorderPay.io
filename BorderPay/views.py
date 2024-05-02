@@ -6,6 +6,8 @@ from .models import Transactions_request
 from django.http import HttpResponse
 from .models import Advance_requests
 from .models import Advance_approvals
+from BorderPay.tasks import print_hey
+
 
 session_user = ""
 type = ""
@@ -141,7 +143,7 @@ def employerwin(request):
         'bank': employer.bank,
         'account': employer.account,
         'denomination': employer.denomination,
-        'advance':advance
+        'advance': advance
     }
 
     employee_name = request.POST.get('username_ee')
@@ -311,4 +313,6 @@ def decline(request):
     return render(request, 'decline.html')
 
 
-
+def trigger_task(request):
+    print_hey.delay()
+    return render(request, 'your_template.html')

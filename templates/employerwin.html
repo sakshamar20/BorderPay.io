@@ -11,16 +11,16 @@
     <nav class="navbar" style = " background-color: #4CAF50;">
         <div class="container-fluid">
             <a class="navbar-brand" style="color: black ">Welcome Employer</a>
-             <button type="button" class="btn btn-success" onclick="location.href='/createcontract'">Create Contract</button>
+             <button type="button" class="btn btn-success" onclick="location.href='/createcontract'">Create a Contract</button>
               <button class="btn btn-outline-success bg-white" type="submit" onclick="location.href='/'">Logout</button> <!-- Add bg-white class -->
             </div>
     </nav>
-    <nav class="navbar bg-body-tertiary">
+    <nav class="navbar" style="background-color:  rgb(150, 147, 143);">
       <div class="container-fluid">
         <form class="d-flex" method = "post" action = "{% url 'employerwin' %}"">
           {% csrf_token %}
           <input class="form-control me-2" type="text" name="username_ee" placeholder="Employee Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-light" type="submit">Search</button>
         </form>
       </div>
     </nav>
@@ -29,11 +29,13 @@
       <div class="card" style="width: 18rem;">
         <div class="card-body text-center"> <!-- Center text within card -->
           <h5 class="card-title">Employee details</h5>
-          <p class="card-text">Employee Name: {{ename}}</p>
-          <p class="card-text">Username: {{eusername}}</p>
-          <p class="card-text">Location: {{elocation}}</p>
-          <p class="card-text">Bank: {{ebank}}</p>
-          <a href="#" class="btn btn-primary" onclick="location.href ='/approve_advance'">Any advance request?</a>
+          <p class="card-text">Employee Name:   {{ename}}</p>
+          <p class="card-text">Username:   {{eusername}}</p>
+          <p class="card-text">Location:   {{elocation}}</p>
+          <p class="card-text">Bank:    {{ebank}}</p>
+          <a href="#" class="btn btn-primary" onclick="location.href ='/approve_advance'">Any advance request?</a><br>
+          <p></p>
+          <a href="#"   class="btn btn-danger" onclick="location.href ='/terminate contract'">Terminate Contract</a>
           <!-- <p class="card-text">Amount left: {{withdraw_amount}}</p> -->
         </div>
       </div>

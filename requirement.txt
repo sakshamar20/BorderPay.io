@@ -4,3 +4,7 @@ django-widget-tweaks==1.4.8
 sqlparse==0.3.1
 celery
 RabbitMQ
+django-celery-results
+redis
+django-db
+subprocess.run
