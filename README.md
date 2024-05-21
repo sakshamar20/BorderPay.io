@@ -1,7 +1,4 @@
 ## BorderPay.io
-The app is still underconstruction
-Blockchain Payroll System - BorderPay.io
-
 ## How to host
 Initiate a python virtual environment 
  and Django and Django REST API Framework -
